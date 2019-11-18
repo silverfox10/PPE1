@@ -65,7 +65,6 @@ if(!empty($_POST['login']) && !empty($_POST['pw'])){
     <input type="text" name="login" placeholder="Entrer votre login"/>
     <input type="password" name="pw" placeholder="Entrer votre mot de passe ici" id="Utilisateur :" size="25" [b]style="width:400px;"[/b]/>
     <input type="submit" name="btn" value="Se connecter"/>
-    <p>Vous n'avez pas encore de compte ? Inscrivez vous <a href="inscription.php">ici</a>!</p>
   </center>
 </body>
  </html>
