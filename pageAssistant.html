@@ -1,0 +1,58 @@
+<html lang="fr" dir="ltr">
+  <head>
+    <link type="text/css" rel="stylesheet" href="pageAssistant.css">
+    <meta charset="utf-8">
+    <title>CashCash - Page assistant</title>
+  </head>
+  <body>
+    <hr>
+    <br/><br/><br/><br/><br/>
+
+    <h1>Rechercher fiche client</h1>
+    <br/>
+    <p class="coordonnees">
+    <input type="numclient" name="numclient" placeholder="Numero du client" id="Utilisateur :" size="25" [b]style="width:400px;"[/b]>
+    <input type="submit" name="btn" value="Rechercher">
+    </p>
+
+    <br/><br/><br/><br/>
+
+    <h1>Affecter une visite</h1>
+    <form class ="choix2",method="post" action="">
+<p class="affecter">
+
+  <select name="choix_agence">
+    <option>Choix agence</option>
+    <option>Lille</option>
+    <option>Lens</option>
+    <option>Paris</option>
+  </select>
+
+  <select name="choix_technicien">
+    <option>Choix technicien</option>
+    <option>Tech1</option>
+    <option>Tech2</option>
+    <option>Tech3</option>
+  </select>
+  <input type="submit" name="btn_Affecter" value="Affecter">
+
+</p>
+<br/><br/>
+<p class="center">
+<input type="submit" name="generer_fiche" value="Générer une fiche d'intervention">
+</p>
+<br/><br/><br/><br/><br/><br/>
+
+<h1>Consulter intervention</h1>
+<p class = "center">
+<input type="date" name="date">
+<select name="choix_technicien">
+  <option>Choix technicien</option>
+  <option>Tech1</option>
+  <option>Tech2</option>
+  <option>Tech3</option>
+</select>
+<input type="submit" name="rechercher_intervention" value="Rechercher">
+<p/>
+  </body>
+</html>
