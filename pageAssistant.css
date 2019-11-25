@@ -25,3 +25,13 @@ input{
 .center{
   text-align: center;
 }
+
+table {
+border: medium solid #000000;
+border-collapse: collapse;
+text-align:center;
+}
+td, th {
+  width: 1000px;
+border: thin solid #6495ed;
+}
