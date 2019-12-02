@@ -16,7 +16,6 @@ if(!empty($_POST['Matricule']) && !empty($_POST['pw'])){
   $reqLogin->execute(array($matricule, $mdp));
   $datas = $reqLogin->fetchall();
 
-  echo $_POST['Matricule'].' '.$_POST['pw'].'<br/>';
   if($reqLogin->rowCount() > 0){
     $reqAssistant = $bdd->prepare('SELECT Count(*) FROM assistanttel WHERE Matricule=?');
     $reqAssistant->execute(array($matricule));
@@ -26,6 +25,7 @@ if(!empty($_POST['Matricule']) && !empty($_POST['pw'])){
       $_SESSION['Matricule'] = $matricule;
       header('Location: pageAssistant.php');
     }
+
     else{
       $_SESSION['Matricule'] = $matricule;
       header('Location: pageTechnicien.php');
