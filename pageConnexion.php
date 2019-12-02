@@ -68,10 +68,7 @@ if(!empty($_POST['Matricule']) && !empty($_POST['pw'])){
   //}
   //$reqProfil->execute(array($matricule));
 
-  /*
-  $temp = $reqLogin->fetchall();
-  var_dump($temp);
-  */
+
 
   //Requete donnant le nombre de ligne avec le login dans la bdd
   //$reqNbProfil = $reqLogin->rowCount();
