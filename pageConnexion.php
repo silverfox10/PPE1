@@ -12,18 +12,61 @@ if(!empty($_POST['Matricule']) && !empty($_POST['pw'])){
   $matricule=$_POST['Matricule'];
   $mdp=$_POST['pw'];
   //Execution des requêtes
-  $reqLogin->execute(array($matricule,$mdp));
-  //$reqProfil->execute(array($matricule));
+
+  $reqLogin->execute(array($matricule, $mdp));
   $datas = $reqLogin->fetchall();
 
-  $mat = $datas[0]['Matricule'];
-  $reqAssistant=$bdd->prepare("SELECT Matricule FROM assistanttel");
-  $reqAssistant->execute();
-  $reqTechnicien=$bdd->prepare("SELECT Matricule FROM technicien");
-  $reqTechnicien->execute();
+  echo $_POST['Matricule'].' '.$_POST['pw'].'<br/>';
+  if($reqLogin->rowCount() > 0){
+    $reqAssistant = $bdd->prepare('SELECT Count(*) FROM assistanttel WHERE Matricule=?');
+    $reqAssistant->execute(array($matricule));
+    $result = $reqAssistant->fetchall();
 
-  $resultat = $reqTechnicien->fetchall()['Matricule'];
-  $resultatAssistant=$reqAssistant->fetchall()['Matricule'];
+    if($result[0][0] > 0){
+      $_SESSION['Matricule'] = $matricule;
+      header('Location: pageAssistant.php');
+    }
+    else{
+      $_SESSION['Matricule'] = $matricule;
+      header('Location: pageTechnicien.php');
+    }
+  }
+  else{
+    echo 'Données eronnées';
+  }
+}
+
+  /*
+
+  if($reqLogin->execute(array($matricule,$mdp))){
+    $datas = $reqLogin->fetchall();
+    $mat = $datas[0]['Matricule'];
+    $reqAssistant=$bdd->prepare("SELECT Matricule FROM assistanttel");
+    $reqAssistant->execute();
+    $reqTechnicien=$bdd->prepare("SELECT Matricule FROM technicien");
+    $reqTechnicien->execute();
+    while ($matricule!=$mat) {
+      $resultat = $reqTechnicien->fetchall(PDO::FETCH_COLUMN,4)[0]['Matricule'];
+      var_dump($resultat);
+      $resultatAssistant= $reqAssistant->fetchall(PDO::FETCH_COLUMN,1)[0]['Matricule'];
+      var_dump($resultatAssistant);
+    }
+
+    $_SESSION['Matricule'] = $mat;
+    */
+    //Redirection
+    /*if ($_SESSION['Matricule']==$resultatAssistant) {
+      header('Location: pageAssistant.php');
+    }
+    elseif ($_SESSION['Matricule']==$resultat) {
+      header('Location: pageTechnicien.php');
+    }
+  }
+    else{
+      echo "Nom d'utilisateur ou mot de passe incorrect!";
+    }*/
+  //}
+  //$reqProfil->execute(array($matricule));
 
   /*
   $temp = $reqLogin->fetchall();
@@ -37,20 +80,6 @@ if(!empty($_POST['Matricule']) && !empty($_POST['pw'])){
     //$valProfil = $reqProfil->fetchall()[0][0];
 
     //Stockage des données dans des variables de sessions pour les utiliser dans d'autres pages
-    $_SESSION['Matricule'] = $mat;
-
-
-    //Redirection
-    if ($_SESSION['Matricule']==$resultatAssistant) {
-      header('Location: pageAssistant.php');
-    }
-    elseif ($_SESSION['Matricule']==$resultat) {
-      header('Location: pageTechnicien.php');
-    }
-  }
-  else{
-    echo "Nom d'utilisateur ou mot de passe incorrect!";
-  }
 //}
  ?>
 
