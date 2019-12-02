@@ -22,7 +22,8 @@ if(!empty($_POST['Matricule']) && !empty($_POST['pw'])){
   $reqTechnicien=$bdd->prepare("SELECT Matricule FROM technicien");
   $reqTechnicien->execute();
 
-  $resultat = $reqTechnicien->fetchall()[0]['Matricule'];
+  $resultat = $reqTechnicien->fetchall()['Matricule'];
+  $resultatAssistant=$reqAssistant->fetchall()['Matricule'];
 
   /*
   $temp = $reqLogin->fetchall();
@@ -40,7 +41,7 @@ if(!empty($_POST['Matricule']) && !empty($_POST['pw'])){
 
 
     //Redirection
-    if ($_SESSION['Matricule']==$reqAssistant) {
+    if ($_SESSION['Matricule']==$resultatAssistant) {
       header('Location: pageAssistant.php');
     }
     elseif ($_SESSION['Matricule']==$resultat) {
